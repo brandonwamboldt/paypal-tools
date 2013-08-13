@@ -83,7 +83,7 @@ class PdtRequest
   {
     // Try to validate the request
     if ($this->validate_request()) {
-
+      call_user_func($success_callback, $this->parse_request());
     } else {
       call_user_func($failure_callback);
     }
@@ -95,7 +95,7 @@ class PdtRequest
    * @throws PayPal\SecurityException
    * @return boolean
    */
-  public function validate_request()
+  protected function validate_request()
   {
     $this->connect();
 
@@ -148,5 +148,32 @@ class PdtRequest
     if (!$this->connection) {
       throw new SecurityException('Unable to establish a connection to PayPal');
     }
+  }
+
+  /**
+   * Parse PayPal's response (contains data about the transaction).
+   *
+   * @return array
+   */
+  protected function parse_response()
+  {
+    // Divide the response up into an array
+    $response = explode('SUCCESS' , $this->response);
+    $response = explode("\n" , urldecode($response[1]));
+
+    // Divide the response into an array with keys and values
+    $temp_array     = array();
+    $response_items = count($response);
+
+    for ($i = 0; $i < $response_items; $i++) {
+      if (empty($response[$i])) {
+          continue;
+      }
+
+      $temp                 = explode('=', $response[$i], 2);
+      $temp_array[$temp[0]] = $temp[1];
+    }
+
+    return $temp_array;
   }
 }
