@@ -70,11 +70,6 @@ class IpnRequest
       return false;
     }
 
-    // Parse the request
-    if (!$this->parse_request()) {
-      return false;
-    }
-
     // Try to validate the request
     if (!$this->validate_request()) {
       return false;
