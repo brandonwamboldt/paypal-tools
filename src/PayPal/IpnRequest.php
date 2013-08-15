@@ -65,13 +65,8 @@ class IpnRequest
       return false;
     }
 
-    // Check the user agent
-    if (strstr($_SERVER['HTTP_USER_AGENT'], 'PayPal') === false) {
-      return false;
-    }
-
     // And check for the occurence of at least one known IPN variable
-    if (!isset($_POST['txn_id'])) {
+    if (!isset($_POST['txn_id']) || !isset($_POST['notify_version']})) {
       return false;
     }
 
