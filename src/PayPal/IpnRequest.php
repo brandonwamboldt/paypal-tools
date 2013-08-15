@@ -66,7 +66,7 @@ class IpnRequest
     }
 
     // And check for the occurence of at least one known IPN variable
-    if (!isset($_POST['txn_id']) || !isset($_POST['notify_version']})) {
+    if (!isset($_POST['txn_id']) || !isset($_POST['notify_version'])) {
       return false;
     }
 
