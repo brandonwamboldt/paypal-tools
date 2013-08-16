@@ -6,6 +6,8 @@ This is a PHP library for building applications that use PayPal. It contains cla
 IPN Requests
 ------------
 
+[PayPal IPN and PDT Variables Reference](https://developer.paypal.com/webapps/developer/docs/classic/ipn/integration-guide/IPNandPDTVariables/).
+
 ```php
 <?php
 $ipn = new PayPal\IpnRequest;
@@ -19,6 +21,8 @@ $ipn->process(function($post_data) {
 
 PDT Requests
 ------------
+
+[PayPal IPN and PDT Variables Reference](https://developer.paypal.com/webapps/developer/docs/classic/ipn/integration-guide/IPNandPDTVariables/).
 
 ```php
 <?php
