@@ -6,7 +6,7 @@ This is a PHP library for building applications that use PayPal. It contains cla
 IPN Requests
 ------------
 
-```
+```php
 <?php
 $ipn = new PayPal\IpnRequest;
 $ipn->set_timeout(5);
@@ -20,7 +20,7 @@ $ipn->process(function($post_data) {
 PDT Requests
 ------------
 
-```
+```php
 <?php
 $pdt = new PayPal\PdtRequest($paypal_pdt_token);
 $pdt->set_timeout(5);
@@ -38,7 +38,7 @@ $pdt->process(function($transaction_data) {
 PayPal Buttons
 --------------
 
-```
+```php
 <?php
 $button = new PayPal\EncryptedButton;
 $button->set_certificate($your_public_cert, $your_private_key);
