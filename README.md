@@ -38,7 +38,33 @@ $pdt->process(function($transaction_data) {
 PayPal Buttons
 --------------
 
-Coming Soon!
+```
+<?php
+$button = new PayPal\EncryptedButton;
+$button->set_certificate($your_public_cert, $your_private_key);
+$button->set_certificate_id($paypal_cert_id);
+$button->set_paypal_cert($paypal_public_cert);
+$encrypted_text = $button->encrypt([
+  'cmd'           => '_xclick',
+  'business'      => 'brandon.wamboldt@gmail.com',
+  'lc'            => 'CA',
+  'currency_code' => 'CAD',
+  'no_shipping'   => '1',
+  'no_note'       => '1',
+  'custom'        => 'some_custom_data',
+  'item_name'     => 'An Awesome Item',
+  'amount'        => '123.45',
+  'quantity'      => '1',
+  'item_number'   => 'AWESOME-ITM-01',
+  'tax'           => '0.00'
+]);
+?>
+<form method="post" action="https://www.paypal.com/cgi-bin/webscr">
+  <input type="hidden" name="cmd" value="<?= $button->get_cmd() ?>">
+  <input type="hidden" name="encrypted" value="<?= $encrypted_text ?>">
+  <input type="submit" value="Checkout">
+</form>
+```
 
 License
 -------

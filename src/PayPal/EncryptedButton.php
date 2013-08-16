@@ -184,6 +184,9 @@ class EncryptedButton
     @unlink($signed_file);
     @unlink($encrypted_file);
 
+    // Signature
+    $encrypted_text = "-----BEGIN PKCS7-----\n" . $encrypted_text . "\n-----END PKCS7-----";
+
     return $encrypted_text;
   }
 }
